@@ -1,0 +1,12 @@
+[
+  {
+    "outputFileName": "wwwroot/js/root.min.js",
+    "inputFiles": [
+      "wwwroot/js/polyfill.js",
+      "wwwroot/js/root.js",
+      "wwwroot/js/root.components.connectionhelper.js",
+      "wwwroot/js/root.components.connectionstatus.js",
+      "wwwroot/js/root.signalr.js"
+    ]
+  }
+]

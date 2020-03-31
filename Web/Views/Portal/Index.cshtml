@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "TestSignalR";
+    ViewData["Header"] = "TestSignalR";
+    ViewData["HeaderShort"] = "TestSignalR";
+    ViewData["BodyClass"] = "portal";
+}
+
+<div id="app">
+    <h1>TestSignalR</h1>
+    <div>{{ count }}</div>
+    <div v-if="connectionStatus.isInError" style="color: red; font-weight: bold;">ERROR</div>
+</div>
+
+@section DataScripts {
+    <script>
+        root.app.connection = root.createSignalRConnection();
+        root.app.connectionHelper.connectionKey = 'default';
+        root.app.connectionHelper.connections.push({ connectionKey: 'default', tagGroup: 'default' });
+        root.app.count = 0;
+    </script>
+}
+
+@section StartupScripts {
+    <script>
+        $(function ()
+        {
+            root.app.connection.on('Connected', function ()
+            {
+                console.info('Server is ready.');
+            });
+            root.app.connection.on('TagChangesMessage', function (message)
+            {
+                root.app.count++;
+            });
+
+            // Create SignalR connection.
+            root.app.connectionHelper.connect();
+
+            // Start connection status timer.
+            root.app.connectionStatus.startTimer();
+        });
+    </script>
+}

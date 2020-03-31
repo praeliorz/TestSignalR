@@ -1,0 +1,30 @@
+﻿@model ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error - TestSignalR";
+    ViewData["Header"] = "Error";
+    ViewData["HeaderShort"] = "Error";
+    ViewData["BodyClass"] = "portal error";
+
+    bool? errorLogged = (bool?)ViewBag.ErrorLogged;
+}
+
+<div>
+    <h1 style="font-size: 4em;">TestSignalR</h1>
+    @if (Model.StatusCode.HasValue)
+    {
+        <h2 class="has-error">@Model.StatusCode.Value - @(((HttpStatusCode)Model.StatusCode.Value).ToString())</h2>
+    }
+    else if (errorLogged.HasValue && errorLogged.Value == true)
+    {
+        <h2 class="has-error">An error has occurred and has been written to the log</h2>
+    }
+    else if (errorLogged.HasValue && errorLogged.Value == false)
+    {
+        <h2 class="has-error">An error has occurred and the SQL Server cannot be accessed so the error message is not logged</h2>
+    }
+    else if (!errorLogged.HasValue)
+    {
+        <h2 class="has-error">An error has occurred</h2>
+    }
+</div>
