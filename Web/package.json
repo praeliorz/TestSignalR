@@ -13,7 +13,7 @@
     "@aspnet/signalr": "^1.1.4",
     "eslint-plugin-vue": "^5.2.2",
     "jquery": "3.4.0",
-    "jquery-validation": "1.18.0",
+    "jquery-validation": "1.19.4",
     "jquery-validation-unobtrusive": "3.2.11",
     "vue": "2.5.17"
   },
